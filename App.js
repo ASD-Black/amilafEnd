@@ -15,6 +15,7 @@ import {Profile} from './pages/drawer/Profile'
 import { Setting} from './pages/drawer/Setting'
 import  {Payments}  from './pages/drawer/Payments'
 import { Inquiry} from './pages/drawer/Inquiry'
+import InquiryHistory from './pages/drawer/inquiry/inquiryHistory'
 
 import Feed from './pages/tabs/Feed/Feed'
 import { FeedDetails } from './pages/tabs/Feed/FeedDetails'
@@ -107,7 +108,11 @@ const MainStack = createStackNavigator({
   Inquiry: {
     screen: Inquiry,
     navigationOptions: navOptionHandlerOFF
-  }
+  },
+  InquiryHistory: {
+    screen: InquiryHistory,
+    navigationOptions: navOptionHandlerOFF
+  },
 }, {initialRouteName: 'Home'})
 
 const appDrawer = createDrawerNavigator(

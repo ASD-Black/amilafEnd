@@ -3,6 +3,7 @@ import { View, TouchableOpacity, StyleSheet, TextInput, KeyboardAvoidingView, St
 import {Text, Container, Header, Content, Textarea, Form} from 'native-base';
 
 import CustomHeader from '../../Components/CustomHeader'
+import InquiryHistory from './inquiry/inquiryHistory'
 
 export class Inquiry extends React.Component {
 
@@ -12,7 +13,8 @@ export class Inquiry extends React.Component {
       regno:'',
       msg:'',
       inq_date:'',
-      contactNo:''
+      contactNo:'',
+      titles:''
     }
   }
 
@@ -26,7 +28,7 @@ export class Inquiry extends React.Component {
     var sec = new Date().getSeconds(); //Current Seconds
 
     const fullDate = year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec
-    Alert.alert(fullDate);
+    //Alert.alert(fullDate);
 
    }
 
@@ -79,10 +81,25 @@ export class Inquiry extends React.Component {
             color: "#212121",
             marginBottom:20,
             marginLeft:40}} 
+            placeholder="Title"
+            placeholderTextColor="#212121"
+            onChangeText={(titles) => this.setState({titles})}
+          />
+
+          <TextInput style={{width: 220,
+            height:50,
+            backgroundColor: 'rgba(33, 33, 33,0.3)',
+            borderRadius: 0,
+            paddingHorizontal: 16,
+            fontSize: 20,
+            color: "#212121",
+            marginBottom:20,
+            marginLeft:40}} 
             placeholder="Type Contact Number"
             placeholderTextColor="#212121"
             onChangeText={(contactNo) => this.setState({contactNo})}
           />
+          
           <TextInput
             placeholder="Type Your comment"
             placeholderTextColor="black"
@@ -96,7 +113,7 @@ export class Inquiry extends React.Component {
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.button2}>
-            <Text style={styles.buttonText} onPress={this.makeInquiry}>View Inquiry History</Text>
+            <Text style={styles.buttonText} onPress={()=> this.props.navigation.navigate('InquiryHistory')}>View Inquiry History</Text>
         </TouchableOpacity>
         
         </View>
@@ -129,6 +146,7 @@ export class Inquiry extends React.Component {
             msg: this.state.msg,
             inq_date: fullDate,
             contactNo: this.state.contactNo,
+            titles: this.state.titles,
           })
         })
         .then((response) => response.json())
@@ -167,9 +185,9 @@ export class Inquiry extends React.Component {
       },
     logoStyle: {
       //justifyContent:'center',
-      marginTop:-50,
+      marginTop:-20,
       marginLeft:80,
-      fontWeight:"900",
+      fontWeight: 'bold',
       marginBottom:60,
       fontSize: 30,
       color: 'rgba(33, 33, 33,0.3)'
@@ -202,7 +220,7 @@ export class Inquiry extends React.Component {
       //marginVertical:10,
       marginTop:20,
       marginLeft:250,
-      marginBottom:250
+      marginBottom:200
     },
     button2: {
       width: 350,
